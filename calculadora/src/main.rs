@@ -23,26 +23,26 @@ fn clear() {
 }
 
 struct Calculos {
-    v1: i32,
-    v2: i32,
+    v1: i128,
+    v2: i128,
 }
 
 impl Calculos {
-    fn somar(&self) -> i32 {
+    fn somar(&self) -> i128 {
         return self.v1 + self.v2;
     }
 
-    fn subtrair(&self) -> i32 {
+    fn subtrair(&self) -> i128 {
         return self.v1 - self.v2;
     }
 
-    fn multiplicar(&self) -> i64 {
-        let v1 = self.v1 as i64;
-        let v2 = self.v2 as i64;
+    fn multiplicar(&self) -> i128 {
+        let v1 = self.v1 as i128;
+        let v2 = self.v2 as i128;
         return v1 * v2;
     }
 
-    fn dividir(&self) -> i32 {
+    fn dividir(&self) -> i128 {
         return self.v1 / self.v2;
     }
 }
@@ -63,11 +63,11 @@ fn main() {
             .read_line(&mut n2str)
             .expect("Erro ao pegar input n2 do usuário.");
 
-        //conversão de string p i32
+        //conversão de string p i128
         let n1str = n1str.trim();
         let n2str = n2str.trim();
-        let n1: i32 = n1str.parse().expect("erro na conversão do n1");
-        let n2: i32 = n2str.parse().expect("erro na conversão do n2");
+        let n1: i128 = n1str.parse().expect("erro na conversão do n1");
+        let n2: i128 = n2str.parse().expect("erro na conversão do n2");
 
         let calc = Calculos { v1: n1, v2: n2 };
 
@@ -78,11 +78,11 @@ fn main() {
             .expect("Erro ao pegar input da operação desejada.");
         opcao = opcao.trim().to_string();
 
-        let resultado: i64 = match opcao.as_str() {
-            "1" => calc.somar() as i64,
-            "2" => calc.subtrair() as i64,
-            "3" => calc.multiplicar() as i64,
-            "4" => calc.dividir() as i64,
+        let resultado: i128 = match opcao.as_str() {
+            "1" => calc.somar(),
+            "2" => calc.subtrair(),
+            "3" => calc.multiplicar(),
+            "4" => calc.dividir(),
             _ => 0,
         };
         println!("O resultado é: {resultado}\n");
