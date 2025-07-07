@@ -9,6 +9,8 @@ _________        .__               .__              .___
         \/     \/          \/                \/      \/                 \/ 
 ";
 
+const VERSION: &str = "1.0.0R";
+
 const OPTIONS: &str = r"
 [1] Somar
 [2] Subtrair
@@ -51,11 +53,15 @@ fn main() {
         let mut n1str: String = "".to_string();
         let mut n2str: String = "".to_string();
         clear();
-        println!("{BANNER}\n");
-        println!("Insira o numero 1:");
-        io::stdin().read_line(&mut n1str);
-        println!("\nInsira o numero 2:");
-        io::stdin().read_line(&mut n2str);
+        println!("{BANNER}\nVersão {VERSION}");
+        println!("Insira o número 1:");
+        io::stdin()
+            .read_line(&mut n1str)
+            .expect("Erro ao pegar input n1 do usuário.");
+        println!("\nInsira o número 2:");
+        io::stdin()
+            .read_line(&mut n2str)
+            .expect("Erro ao pegar input n2 do usuário.");
 
         //conversão de string p i32
         let n1str = n1str.trim();
@@ -67,7 +73,9 @@ fn main() {
 
         println!("Selecione uma das opções abaixo:");
         println!("{OPTIONS}\n>");
-        io::stdin().read_line(&mut opcao);
+        io::stdin()
+            .read_line(&mut opcao)
+            .expect("Erro ao pegar input da operação desejada.");
         opcao = opcao.trim().to_string();
 
         let resultado: i64 = match opcao.as_str() {
@@ -77,7 +85,11 @@ fn main() {
             "4" => calc.dividir() as i64,
             _ => 0,
         };
-        println!("O resultado é: {resultado}");
-        break;
+        println!("O resultado é: {resultado}\n");
+        println!("Clique enter para fazer outro cálculo.");
+        {
+            let mut ignore: String = String::new();
+            let _ = io::stdin().read_line(&mut ignore);
+        }
     }
 }
